@@ -67,14 +67,19 @@
 
     .btn-nav {
       display: inline-block;
-      background: transparent;
-      color: transparent;
+      border: 1px solid var(--stone-dark);
+      background: var(--white);
+      color: var(--stone-dark);
       font-size: 0.7rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       padding: 0.6rem 1.4rem;
       font-weight: 500;
       transition: background 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: var(--stone-dark); color:var(--white);
     }
     
 
@@ -553,7 +558,7 @@
       <a href="#about">О нас</a>
       <a href="#contact">Контакты</a>
     </nav>
-    <a  class="btn-nav">Консультация</a>
+    <a  class="btn-nav" href="#contact">Консультация</a>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Меню">&#9776;</button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
@@ -657,8 +662,8 @@
       <div class="about-body">
         <p class="about-tag">Опыт и традиции</p>
         <h2 class="section-title" style="margin-bottom:2rem;">Более 15 лет преданности ремеслу</h2>
-        <p>Я верю, что работа по камню — это не просто ремесло, а форма служения. За каждым портретом стоит история, и моя задача — передать её с максимально возможными уважением и точностью.</p>
-        <p>Используя как проверенные временем ручные инструменты, так и современные лазерные установки, я гарантирую, что изображение сохранит свою первозданную чёткость на десятилетия.</p>
+        <p>Мы верим, что работа по камню — это не просто ремесло, а форма служения. За каждым портретом стоит история, и наша задача — передать её с максимально возможными уважением и точностью.</p>
+        <p>Используя как проверенные временем ручные инструменты, так и современные лазерные установки, мы гарантируем, что изображение сохранит свою первозданную чёткость на десятилетия.</p>
         <p>Индивидуальный подход и эмпатия на каждом этапе — от эскиза до финального штриха.</p>
         <div class="stats">
           <div>
