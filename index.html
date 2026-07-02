@@ -29,7 +29,6 @@
 
     a { text-decoration: none; color: inherit; }
 
-    /* ── NAV ── */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -108,7 +107,6 @@
     }
     .mobile-menu.open { display: flex; }
 
-    /* ── HERO ── */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -195,7 +193,6 @@
     }
     .btn-outline:hover { background: var(--stone-dark); color: var(--white); }
 
-    /* ── SECTION SHARED ── */
     section { padding: 6rem 1.5rem; }
 
     .container { max-width: 1280px; margin: 0 auto; }
@@ -208,7 +205,6 @@
       color: var(--stone-dark);
     }
 
-    /* ── PORTFOLIO ── */
     #portfolio { background: var(--white); }
 
     .portfolio-head { margin-bottom: 3.5rem; }
@@ -236,25 +232,18 @@
     .portfolio-tile:nth-child(-n+4) { height: 280px; }
     .portfolio-tile:nth-child(n+5) { height: 200px; }
 
-    .portfolio-tile-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-    .portfolio-tile:hover .portfolio-tile-overlay { opacity: 1; }
-    .portfolio-tile-overlay span {
-      color: white;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+    .portfolio-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
     }
 
-    /* ── SERVICES ── */
+    .portfolio-tile:hover .portfolio-img {
+      transform: scale(1.05);
+    }
+
     #services { background: var(--stone-bg); }
 
     #services .section-title { text-align: center; margin-bottom: 4rem; }
@@ -293,7 +282,6 @@
       line-height: 1.75;
     }
 
-    /* ── ABOUT ── */
     #about { background: var(--white); }
 
     .about-grid {
@@ -345,7 +333,6 @@
       margin-top: 0.25rem;
     }
 
-    /* ── CONTACT ── */
     #contact {
       background: var(--stone-dark);
       color: var(--white);
@@ -451,7 +438,6 @@
     }
     .btn-submit:hover { background: transparent;  color:var(--stone-dark)}
 
-    /* ── FOOTER ── */
     footer {
       background: #111;
       color: rgba(255,255,255,0.45);
@@ -504,27 +490,88 @@
     }
     .footer-links a:hover { color: rgba(255,255,255,0.75); }
 
-  .blackrose {
-  width: 30px;
-  position: absolute;
-  left: 23%;
-  transform: translateX(-50%);
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
+    .blackrose {
+      width: 40px;
+      position: absolute;
+      left: 22%;
+      transform: translateX(-50%);
+      top: 55%;
+      transform: translate(-50%, -50%);
+    }
 
-.blackrose2 {
-  width: 30px;
-  position: absolute;
-  left: 16.5%;
-  transform: translateX(-50%);
-  top: 426%;
-  transform: translate(-50%, -50%);
-}
+    .blackrose2 {
+      width: 40px;
+      position: absolute;
+      left: 16%;
+      transform: translateX(-50%);
+      top: 426.7%;
+      transform: translate(-50%, -50%);
+    }
 
-    
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      animation: fadeIn 0.3s ease;
+    }
 
-    /* ── RESPONSIVE ── */
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      cursor: default;
+      animation: scaleIn 0.3s ease;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10000;
+      font-family: 'Inter', sans-serif;
+      line-height: 1;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+
+      border-color: white;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
     @media (max-width: 900px) {
       nav, .btn-nav { display: none; }
       .hamburger { display: block; }
@@ -537,6 +584,14 @@
       .about-grid { grid-template-columns: 1fr; }
       .about-image { height: 280px; }
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+      .lightbox-close {
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 26px;
+      }
     }
 
     @media (max-width: 540px) {
@@ -547,18 +602,17 @@
 </head>
 <body>
 
-<!-- NAV -->
 <header>
   <div class="nav-inner">
-    <span class="logo">Чёрная Роза  </span>
-    <img class ='blackrose' src="NhcdQE9MvQzW3jskWbY25KhaCHVdsdJgRjQ2B8e7uVPL7m5zJ-PdB62LqWmep52t7C5ujyUu1QJbVK3JEXkBppVh.jpg" alt=""> 
+    <a class="logo" href="#">Чёрная Роза</a>
+    <img class="blackrose" src="blackrose.png" alt=""> 
     <nav>
       <a href="#portfolio">Портфолио</a>
       <a href="#services">Услуги</a>
       <a href="#about">О нас</a>
       <a href="#contact">Контакты</a>
     </nav>
-    <a  class="btn-nav" href="#contact">Консультация</a>
+    <a class="btn-nav" href="#contact">Консультация</a>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Меню">&#9776;</button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
@@ -570,12 +624,10 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-grain"></div>
   <div class="hero-content">
     <p class="eyebrow">Мастерская ритуальной гравировки</p>
-
     <p>Индивидуальная ручная гравировка и мемориальные портреты, сохраняющие память о близких в благородном граните и мраморе.</p>
     <div class="btn-group">
       <a href="#portfolio" class="btn-primary">Посмотреть работы</a>
@@ -584,7 +636,6 @@
   </div>
 </section>
 
-<!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="container">
     <div class="portfolio-head">
@@ -592,40 +643,38 @@
       <p>Каждая работа — это диалог между мастером и камнем, воплощающий уникальную историю жизни.</p>
     </div>
     <div class="portfolio-grid">
-      <div class="portfolio-tile" style="background:#d4cfc6">
-        <div class="portfolio-tile-overlay"><span>Работа 1</span></div>
+      <div class="portfolio-tile" onclick="openLightbox('job1.jpg')">
+        <img class="portfolio-img" src="job1.jpg" alt="Работа 1">
       </div>
-      <div class="portfolio-tile" style="background:#c8c3ba">
-        <div class="portfolio-tile-overlay"><span>Работа 2</span></div>
+      <div class="portfolio-tile" onclick="openLightbox('job2.jpg')">
+        <img class="portfolio-img" src="job2.jpg" alt="Работа 2">
       </div>
-      <div class="portfolio-tile" style="background:#bab5ac">
-        <div class="portfolio-tile-overlay"><span>Работа 3</span></div>
+      <div class="portfolio-tile" onclick="openLightbox('job3.jpg')">
+        <img class="portfolio-img" src="job3.jpg" alt="Работа 3">
       </div>
-      <div class="portfolio-tile" style="background:#ccc8bf">
-        <div class="portfolio-tile-overlay"><span>Работа 4</span></div>
+      <div class="portfolio-tile" onclick="openLightbox('job4.jpg')">
+        <img class="portfolio-img" src="job4.jpg" alt="Работа 4">
       </div>
-      <div class="portfolio-tile" style="background:#c0bbb2">
-        <div class="portfolio-tile-overlay"><span>Работа 5</span></div>
+      <div class="portfolio-tile" onclick="openLightbox('job5.jpg')">
+        <img class="portfolio-img" src="job5.jpg" alt="Работа 5">
       </div>
-      <div class="portfolio-tile" style="background:#d0cbc2">
-        <div class="portfolio-tile-overlay"><span>Работа 6</span></div>
+      <div class="portfolio-tile" onclick="openLightbox('job6.jpg')">
+        <img class="portfolio-img" src="job6.jpg" alt="Работа 6">
       </div>
-      <div class="portfolio-tile" style="background:#b8b3aa">
-        <div class="portfolio-tile-overlay"><span>Работа 7</span></div>
+      <div class="portfolio-tile" onclick="openLightbox('job7.jpg')">
+        <img class="portfolio-img" src="job7.jpg" alt="Работа 7">
       </div>
-      <div class="portfolio-tile" style="background:#cac5bc">
-        <div class="portfolio-tile-overlay"><span>Работа 8</span></div>
+      <div class="portfolio-tile" onclick="openLightbox('job8.jpg')">
+        <img class="portfolio-img" src="job8.jpg" alt="Работа 8">
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
 <section id="services">
   <div class="container">
     <h2 class="section-title">Наши Услуги</h2>
     <div class="services-grid">
-
       <div class="service-card">
         <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 3.487a2.25 2.25 0 1 1 3.182 3.182L7.5 19.214l-4.5 1.125 1.125-4.5L16.862 3.487z"/>
@@ -633,7 +682,6 @@
         <h3>Ручная Гравировка</h3>
         <p>Классический метод, позволяющий добиться максимальной глубины и художественной выразительности.</p>
       </div>
-
       <div class="service-card">
         <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
@@ -641,7 +689,6 @@
         <h3>Лазерная Точность</h3>
         <p>Современные технологии для детальной передачи фотографического сходства и сложных орнаментов.</p>
       </div>
-
       <div class="service-card">
         <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/>
@@ -649,12 +696,10 @@
         <h3>Реставрация</h3>
         <p>Восстановление утраченных элементов, чистка и обновление существующих надписей и портретов.</p>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
@@ -680,7 +725,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="contact-grid">
@@ -709,7 +753,6 @@
           </div>
         </div>
       </div>
-
       <div class="contact-form-wrap">
         <h3>Консультация</h3>
         <form onsubmit="handleSubmit(event)">
@@ -732,14 +775,11 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  
   <div class="footer-inner">
-    <img class ='blackrose2' src="NhcdQE9MvQzW3jskWbY25KhaCHVdsdJgRjQ2B8e7uVPL7m5zJ-PdB62LqWmep52t7C5ujyUu1QJbVK3JEXkBppVh.jpg" alt="">
+    <img class="blackrose2" src="blackrose.png" alt="">
     <div class="footer-left">
-      <p class="footer-logo">Чёрная Роза </p>
-      
+      <p class="footer-logo">Чёрная Роза</p>
       <p>Художественная мастерская по обработке камня и ритуальной гравировке.</p>
       <p class="copyright">© 2026 Все права защищены.</p>
     </div>
@@ -747,27 +787,57 @@
       <p class="footer-col-title">Информация</p>
       <ul class="footer-links">
         <li><a>Soon</a></li>
-       
       </ul>
     </div>
   </div>
 </footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox(event)">✕</button>
+  <img id="lightboxImg" src="" alt="Увеличенное фото">
+</div>
 
 <script>
   function toggleMenu() {
     const m = document.getElementById('mobileMenu');
     m.classList.toggle('open');
   }
+
   function closeMenu() {
     document.getElementById('mobileMenu').classList.remove('open');
   }
+
   function handleSubmit(e) {
     e.preventDefault();
     alert('Запрос отправлен!');
     e.target.reset();
   }
+
+  function openLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightboxImg');
+    img.src = src;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (e.target.closest('.lightbox') || e.target.closest('.lightbox-close')) {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox.classList.contains('open')) {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+  });
 </script>
-<!-- FOOTER -->
 </body>
 </html>
-
